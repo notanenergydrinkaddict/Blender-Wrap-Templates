@@ -5,7 +5,7 @@ My blender and wrap3 templates.
 ## Wrap3 Templates
 - [`Genesis9/ExcludeWrap_EarsNoseMouth.json`](Genesis9/ExcludeWrap_EarsNoseMouth.json)
   - Excludes poly faces for Genesis 9 mesh:
-    - Inner Ear
+    - Inner Ear (and canals)
     - Inner Nose
     - Eyeliner
     - Mouth Cavity
