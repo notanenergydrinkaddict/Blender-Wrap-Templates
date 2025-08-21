@@ -3,12 +3,16 @@
 My blender and wrap3 templates.
 
 ## Wrap3 Templates
-- [`Genesis9/ExcludeWrap_EarsNoseMouth.json`](Genesis9/ExcludeWrap_EarsNoseMouth.json)
-  - Excludes poly faces for Genesis 9 mesh:
-    - Inner Ear (and canals)
-    - Inner Nose
-    - Eyeliner
-    - Mouth Cavity
+### DAZ Studio
+
+- [`Genesis 8.1 Male`](Genesis8.1/Male)
+- [`Genesis 8.1 Female`](Genesis8.1/Female)
+  - Excludes Mouth, Teeth, EyeMoisture, EyeSocket, Ear Canals, Nose
+    ![](https://github.com/user-attachments/assets/f77c4102-e601-4e47-84d4-d6a839cb30ec)
+- [`Genesis 9`](Genesis9)
+  - Excludes Mouth, Inner Eyes, Ear Canals, Nose
+    ![](https://github.com/user-attachments/assets/49747c09-6c6b-4670-a772-bf122cf299ba)
+
 
 ## Blender Scripts
 - [`ExcludeFaces.py`](ExcludeFaces.py)
