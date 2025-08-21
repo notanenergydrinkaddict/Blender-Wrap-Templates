@@ -16,9 +16,9 @@ My blender and wrap3 templates.
   - Usage:
     ```powershell
     # `--factory-startup` to prevent of loading user addons
-    blender.exe --factory-startup --background --python "<Path to ExcludeFaces.py>" -- "<input.obj>" "<output.obj>" "<faces.json>"
+    blender.exe --factory-startup --background --python "<Path to ExcludeFaces.py>" -- "<input.obj> <output.obj> <faces.json or list.txt>"
     ```
-  - Example usage in Powershell
+  - Example usage in Powershell (single JSON)
     ```powershell
     # `&` symbol is required to execute file in path
     # `--factory-startup` to prevent of loading user addons
@@ -28,4 +28,23 @@ My blender and wrap3 templates.
     "E:\models\Genesis9.obj" `
     "E:\models\Genesis9_Groups.obj" `
     "E:\models\ExcludeWrap_EarsNoseMouth.json"
+    ```
+  - Example usage of list files
+    ```
+    E:\models\G8.1_ExcludeWrap_EarsNoseMouthEyes.json
+    E:\models\G8.1_ExcludeWrap_Fingernails.json
+    E:\models\G8.1_ExcludeWrap_Toenails.json
+    ```
+    - Launching script
+    ```powershell
+    # `&` symbol is required to execute file in path
+    # `--factory-startup` to prevent of loading user addons
+    #
+    # Filename can be anything as long it ends with `.txt`
+    & "E:\blender_builds\blender-2.93.18-windows-x64\blender.exe" `
+    --factory-startup --background --python `
+    "E:\blender_builds\blender-2.93.18-windows-x64\ExcludeFaces.py" -- `
+    "E:\models\Genesis8.1.obj" `
+    "E:\models\Genesis8.1_Groups.obj" `
+    "E:\models\WrapList.txt"
     ```

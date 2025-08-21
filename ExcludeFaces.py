@@ -88,7 +88,7 @@ def main():
         print(f"{m}You are running {bpy.app.version_string}")
         return
     argv = sys.argv
-    u = "<input.obj> <output.obj> <faces.json>"
+    u = "<input.obj> <output.obj> <faces.json or list.txt>"
     if "--" not in argv:
         print(f"Usage: {argv[0]} --background --python ExcludeFaces.py -- {u}")
         return
@@ -97,20 +97,45 @@ def main():
         print(f"Provide 3 arguments: {u}")
         return
 
-    input_path, output_path, faces_json = argv
+    input_path, output_path, faces_arg = argv
 
     if not os.path.exists(input_path):
         print(f"Input file does not exist: {input_path}")
         return
-    if not os.path.exists(faces_json):
-        print(f"Faces JSON file does not exist: {faces_json}")
-        return
 
-    with open(faces_json, "r") as f:
-        faces_to_select = json.load(f)
-        if not isinstance(faces_to_select, list):
-            print("Faces JSON must contain a list of indices")
+    faces_to_select = []
+
+    if faces_arg.lower().endswith(".txt"):
+        if not os.path.exists(faces_arg):
+            print(f"Faces list file does not exist: {faces_arg}")
             return
+        json_files = []
+        with open(faces_arg, "r") as list_file:
+            for line in list_file:
+                line = line.strip()
+                if not line:
+                    continue
+                # Skip comments
+                isTxtJson = (line.lower().endswith(".txt") or line.lower().endswith(".json")) is False
+                if line.startswith((";", "#", "//", "--")) or isTxtJson:
+                    print(f"skip line `{line}`")
+                    continue
+                print(f"append `{line}`")
+                json_files.append(line)
+    else:
+        json_files = [faces_arg]
+
+    for faces_json in json_files:
+        print(f"open `{faces_json}`")
+        if not os.path.exists(faces_json):
+            print(f"Faces JSON file does not exist: {faces_json}")
+            return
+        with open(faces_json, "r") as f:
+            data = json.load(f)
+            if not isinstance(data, list):
+                print(f"Faces JSON must contain a list of indices: {faces_json}")
+                return
+            faces_to_select.extend(data)
 
     import_obj(input_path)
 
